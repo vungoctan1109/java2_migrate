@@ -45,15 +45,15 @@ public class DemoReflection {
 //                sqlQueryBuilder.append(" ");
 //                sqlQueryBuilder.append(column.fieldType());
 //            } else {
-                sqlQueryBuilder.append(field.getName());
-                sqlQueryBuilder.append(" ");
-                if (field.getType().getSimpleName().equals("int")) {
-                    sqlQueryBuilder.append("INT");
-                } else if (field.getType().getSimpleName().equalsIgnoreCase("String")) {
-                    sqlQueryBuilder.append("VARCHAR(200)");
-                } else if (field.getType().getSimpleName().equalsIgnoreCase("Double")) {
-                    sqlQueryBuilder.append("DOUBLE");
-                }
+            sqlQueryBuilder.append(field.getName());
+            sqlQueryBuilder.append(" ");
+            if (field.getType().getSimpleName().equals("int")) {
+                sqlQueryBuilder.append("INT");
+            } else if (field.getType().getSimpleName().equalsIgnoreCase("String")) {
+                sqlQueryBuilder.append("VARCHAR(200)");
+            } else if (field.getType().getSimpleName().equalsIgnoreCase("Double")) {
+                sqlQueryBuilder.append("DOUBLE");
+            }
 //            }
             if (isPrimaryKey) {
                 Id id = field.getAnnotation(Id.class);
