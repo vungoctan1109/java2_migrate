@@ -94,7 +94,7 @@ public class DemoReflection {
             if (field.getType().getSimpleName().equals("String")) {
                 fieldValuesBuilder.append("'");
                 fieldValuesBuilder.append(field.get(obj));
-                fieldValuesBuilder.append("'");
+                fieldValuesBuilder.append("', ");
             } else {
                 fieldValuesBuilder.append(field.get(obj));
                 fieldValuesBuilder.append(", ");

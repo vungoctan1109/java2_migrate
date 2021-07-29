@@ -1,5 +1,6 @@
 package reflection.generic;
 
+import reflection.myannotation.Table;
 import util.ConnectionHelper;
 
 import java.lang.reflect.Field;
@@ -13,6 +14,10 @@ public class MasterModel<T> {
         Connection cnn = ConnectionHelper.getConnection();
         Statement stt = cnn.createStatement();
         String tableName = clazz.getSimpleName();
+        Table table = (Table) clazz.getAnnotation(Table.class);
+        if (!table.name().isEmpty()) {
+            tableName = table.name();
+        }
         StringBuilder fieldNamesBuilder = new StringBuilder();
         fieldNamesBuilder.append("(");
         Field[] fields = clazz.getDeclaredFields();
@@ -29,7 +34,7 @@ public class MasterModel<T> {
             if (field.getType().getSimpleName().equals("String")) {
                 fieldValuesBuilder.append("'");
                 fieldValuesBuilder.append(field.get(obj));
-                fieldValuesBuilder.append("'");
+                fieldValuesBuilder.append("', ");
             } else {
                 fieldValuesBuilder.append(field.get(obj));
                 fieldValuesBuilder.append(", ");
@@ -45,4 +50,6 @@ public class MasterModel<T> {
             sqlException.printStackTrace();
         }
     }
+
+
 }
